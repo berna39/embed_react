@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React embed</title>
+</head>
+<body>
+    <div id="myDiv"></div>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script>
+        'use strict';
+
+        const e = React.createElement;
+
+        class FollowButton extends React.Component{
+            constructor(props){
+                super(props);
+
+                this.state = { followed: false };
+            }
+
+            render(){
+                
+                if(this.state.followed == true)
+                {
+                    return 'Already followed';
+                }
+
+                return e(
+                    'button',
+                    { onClick: () => this.setState({ followed: true })  },
+                    'Click to follow'
+                );
+            }
+        }
+
+
+        const domContainer = document.querySelector('#myDiv');
+        ReactDOM.render(e(FollowButton), domContainer);
+    </script>
+</body>
+</html>
